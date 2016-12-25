@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Arithmetic Precedence Mixed Types</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../global_styles.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<h1>Arithmetic Precedence Mixed Types</h1>
+<p>Java has the following Operators:</p>
+<p><span class="code">+ - * / %</span> <br>
+  for addition, subtraction, multiplication,  division and remainder . In this section we will look at the precedence issues involved with doing more complex operations as well as dealing with operations between different primitive types. </p>
+<h2>Concepts </h2>
+<ul>
+  <li>Integer arithmetic
+(fractional parts are lost in division) 
+    <pre class="code">
+  int x, y, z, a, b , c;
+  x = 10/3;    // x = 3
+  y= x + 20/5 + 11/4;  // y = 9
+  </pre>
+  </li>
+  <li>Floating Point (double) arithmetic
+    <pre class="code">
+  double  z;
+  z = 10.0/ 3.0;   //z= 3.333333...</pre>
+  </li>
+  <li>Precedence
+  : Operators have priority levels <br> 
+  Lower priority : + -<br>
+  Higher priority : * / %
+  <br> 
+  Priority rule: Compiler does higher priority operators before lower priority operators.  <br>
+  Left to Right rule: For operators within the same group, the order of operation is left to right <br>
+  The compiler does operations within parenthesis first <br>   
+    <pre class="code">
+  int y;
+  y = 3 + 5 * 6;  // 5*6 happens first because of priority rule.
+  y = (3+5) * 6;  // 3+5 happens first because of the parenthesis rule
+  y = 3 + 5 - 4;  // 3+6 happens first, and then the we subtract 4 from the result (left to right rule). 
+  y = 3 * 7 / 2;  // 3*7 happens first because of left to right rule
+  y = 3 * (7/2);  // 7/2 happens first because of the parenthesis rule
+  
+  double x, base=10, rate = 8.50, hours=20;
+  x = base + rate * hours;
+  x = base + (rate * hours); // same as previous statement
+  x = (base + rate) * hours; // Using parenthesis to change the order
+  
+   </pre>
+   <h3> Practice</h3>
+   <pre class="code">
+<p class="code">int answer;<br>int x, y, z;</p>x = 10;<br>y= 5;<br>z=2;
+<p class="code">
+answer = y + z;  // answer = 7
+answer = y - z;  // answer = 3
+answer = y * z;  // answer = 10
+answer = y/z;    // answer = 2 ... Note that in integer divide you lose fractional part
+answer = y % z;  // answer = 1 ... The remainder from dividing 5 by 2 is 1
+
+answer = x + y +z; // answer = 17
+<br>answer = 10*x + 5*y + z; // answer = 127  ... Like algebra, multiply(*) happens before add(+)<br>answer = x/3 + y/2 + z;  // answer = 7    ... Like algebra, divide(/) happens before add(+)
+answer = (x + y + z )/3; // answer = 5    ... Like algebra, we do things inside parenthesis first
+                         // like algebra, parenthesis can be used to 
+                         // get around operator precedence ... 
+                         // to be discussed later
+</p>
+</pre>
+
+  </li>
+  <li><em><strong>Mixed arithmetic</strong></em>... Operations on different data types are done with the more precise data type
+    <pre class="code">
+  int i_answer;
+  double d_answer;
+
+
+  i_answer = 5/2;  // i_answer = 2;
+  d_answer = 5/2;  // d_answer = 2; Note integer arithmetic between 2 integers
+  d_answer = 5.0/2.0;  // d_answer = 2.5 arithmetic between 2 doubles
+  d_answer = 5 / 2.0;  // d_answer = 2.5 arithmetic between a double and int.  Operation done with higher precision data type
+  d_answer = 5.0 / 2;  // d_answer = 2.5 arithmetic between a double and int.  Operation done with higher precision data type
+  
+  int ix;
+  double dx, dy;
+
+
+// Figure out the results of the following:
+  
+  ix = 4 + 6/4;
+  dx = ix +20/3;
+  dx = 10/3;
+  dx = 10.0/3.0;
+  dx = 10.0/3.0 + 5/2 + ix/3;
+  dy = dx/2.0 + ix/4 + ix/4.0;
+  </pre>
+  </li>
+</ul>
+<hr>
+<p>Last Modified: 
+  <!-- #BeginDate format:Am1a -->July 17, 2013 2:30 PM<!-- #EndDate -->
+</p>
+<p>&nbsp; </p>
+</body>
+</html>

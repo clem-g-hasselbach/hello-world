@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>Arithmetic Primitive Sizes, Casting, Shortcuts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../global_styles.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<h1>Arithmetic Primitive Sizes, Casting, Shortcuts</h1>
+<p>&nbsp;</p>
+<ul>
+  <li><em><strong>Mixed arithmetic</strong></em>... Operations on different data types are done with the more precise data type
+    <pre class="code">
+  int i_answer;
+  double d_answer;
+
+
+  i_answer = 5/2;  // i_answer = 2;
+  d_answer = 5/2;  // d_answer = 2; Note integer arithmetic between 2 integers
+  d_answer = 5.0/2.0;  // d_answer = 2.5 arithmetic between 2 doubles
+  d_answer = 5 / 2.0;  // d_answer = 2.5 arithmetic between a double and int.  Operation done with higher precision data type
+  d_answer = 5.0 / 2;  // d_answer = 2.5 arithmetic between a double and int.  Operation done with higher precision data type
+  
+  int ix;
+  double dx, dy;
+
+
+// Figure out the results of the following:
+  
+  ix = 4 + 6/4;
+  dx = ix +20/3;
+  dx = 10/3;
+  dx = 10.0/3.0;
+  dx = 10.0/3.0 + 5/2 + ix/3;
+  dy = dx/2.0 + ix/4 + ix/4.0;
+  </pre>
+  </li>
+  <li><em><strong>Primitive &quot;Sizes&quot; and Casting operator</strong></em>    
+    <pre class="code">
+  int x;
+  double d;
+  d = 9.0/4.0; // No problem
+  d = 9/4;  // No problem.  Arithmetic operation will be done as integers, so the answer will be 2.  The value of 2 is then stored into the double d.
+ 
+  x = 9.0/4.0; // Compilation error because something is lost(fractional part) when storing a double in an int
+  x = (int)(9.0/4.0); // Proper way to avoid compilation error
+                      // This is calling a cast, and you are effectively telling the compiler that you are 
+                      // aware that something could be lost in storing a double into an int, but you are OK with the possible loss
+  
+  In general, we have "size of ordering" for data number like data types of:
+<span class="highlighted">byte --&gt; short --&gt; int --&gt; long --&gt; float --&gt; double
+</span>
+
+byte b;
+short s;
+int i;
+long l;
+float f;
+double d;
+
+// All of the following work just fine because we are storing a &quot;smaller&quot; primitive into a &quot;larger&quot; primitive
+b = 2;
+s = b;
+i = s;
+l = i;
+f = l;
+d = f;
+
+// However:
+d = 2;
+f = d; // compile error
+f = (float)d; // This is OK, because of the cast
+l = f; // compile error
+l = (long) f; // This is OK, because of the cast
+i = l; // compile error
+i = (int) l;  // This is OK, because of the cast
+s = i; // compile error
+s = (short) i; // This is OK, because of the cast
+b = s; // compile error
+b = (byte) s; // This is OK, because of the cast
+
+// Java quirk:
+
+f = 2.0;  // Compile error because Java considers 2.0 a double
+f = (float) 2.0; // This works
+f = 2.0f; // This also works, because 2.0f is considered a floating point constant </pre>
+  </li>
+  <li>Mixed arithmetic, casting practice .... See if you can figure out the values after each operation:
+      <pre class="code">
+  double d;
+  int i, j;
+  
+  d = 10.0/3  + 10/3;
+  i = 3;
+  d = 10.0/i  +  10/i;
+  j = (int) ( 10.0/i + 10/i);
+  
+  </pre>
+  </li>
+  <li>More = short cut operators
+      <pre class="code">
+  int x;
+  x = 2;
+  x += 3;  // Equivalent to x = x +3;
+  x *= 2;   // Equivalent to x = x * 2;
+  x /= 2;   //  Equivalent to x = x/2;
+  x %= 2 //   Equivalent to x = x % 2;
+  x *= 10 + 4/3 -2; // Equivalent to x = x * (10 + 4/3 -2);
+  </pre>
+  </li>
+  <li> Increment and Decrement Operators
+      <pre class="code">
+  int z, x1 =3, x2 = 3, y1 = 3, y2=3, x=3, y=3;
+ 
+  z = ++x1;  // z has a value of 4, x1 has a value of 4
+  z = x2++;  // z has a value of 3, x2 has a value of 4
+  z = --y1;  // z has a value of 2, y1 has a value of 2
+  z = y2--;  // z has a value of 3, y2 has a value of 2
+
+
+// See if you can figure these out:
+
+  z = x++   +  y++;   
+  z = ++x   +  ++y;     
+  z = ++x   +  y++;    
+  z = x--   +   y--;   
+  z = --x   +   --y;   </pre>
+  </li>
+</ul>
+<font face="Arial"> </font>
+<h2>&nbsp;</h2>
+<hr>
+<h2><a name="practice"></a><a href="../Resources/JPHB.htm">Java Practice(JPHB): Enter your answers in a text file with numbers for the questions 1, 2, 3, .....</a></h2>
+<hr>
+<p>Last Modified: 
+  <!-- #BeginDate format:Am1a -->December 21, 2015 12:11 PM<!-- #EndDate -->
+</p>
+<p>&nbsp; </p>
+</body>
+</html>
